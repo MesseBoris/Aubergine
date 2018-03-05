@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+		{% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.code }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">C'est vide</td>
+            </tr>
+        {% endfor %}
+    </body>
+</html>
