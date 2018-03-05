@@ -2,3 +2,11 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+app_ticket_add:
+    path: /ticket/add
+    controller: App\Controller\TicketController::add
+
+app_ticket_all:
+    path: /ticket/all
+    controller: App\Controller\TicketController::ticket
+

@@ -54,4 +54,34 @@ class Ticket
 		
 		return $this;
     }
+	
+	/**
+	 * @ORM\Column(type="text", length=255, nullable=true)
+	 */
+	private $description;
+	
+	/**
+	 * Get description
+	 *
+	 *@return string
+	 */
+	public function getDescription()
+    {
+        return $this->description;
+    }
+
+	/**
+	 * Set description
+	 *
+	 *@param string $description
+	 *
+	 *@return Ticket
+	 */
+    public function setDescription($poste)
+    {
+        $this->description = $poste;
+		
+		return $this;
+    }
+
 }

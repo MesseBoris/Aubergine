@@ -4,9 +4,16 @@
         <meta charset="UTF-8">
     </head>
     <body>
+	<a href="{{ url("app_ticket_add") }}">Add</a>
+	<table class="table">
+		<tr>
+            <th>poste</th>
+			<th>description</th>
+        </tr>
 		{% for ticket in tickets %}
             <tr>
-                <td>{{ ticket.code }}</td>
+                <td>{{ ticket.poste }}</td>
+				<td>{{ ticket.description }}</td>
             </tr>
         {% else %}
             <tr>
@@ -14,4 +21,5 @@
             </tr>
         {% endfor %}
     </body>
+	</table>
 </html>

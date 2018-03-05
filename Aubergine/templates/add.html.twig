@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h1>Ouvrir un ticket</h1>
+	{{ form_start(form) }}
+	<div>
+    {{ form_label(form.poste) }}
+    {{ form_errors(form.poste) }}
+    {{ form_widget(form.poste) }}
+    </div>
+	<div>
+    {{ form_label(form.description) }}
+    {{ form_errors(form.description) }}
+    {{ form_widget(form.description) }}
+    </div>
+	{{ form_end(form) }}
+{% endblock %}
