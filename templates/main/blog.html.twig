@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<h1> BLOG </h1>
+	{% for post in blog %}
+        <p>{{ post.title }}</p>
+		<p>{{ post.content|truncate(20)}}</p>
+	{%else%}
+		<p>Y'a rien</p>
+    {% endfor %}
+{% endblock %}

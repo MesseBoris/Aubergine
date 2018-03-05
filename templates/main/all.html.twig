@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<a href="{{ url("app_product_add") }}">Add</a>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Release On</th>
+            <th></th>
+			<th>Action</th>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.releaseOn|date }}</td>
+				<td>
+                    <a onclick="return confirm('are you sure?');" href="{{ url("app_product_del", {"product":product.id}) }}">Delete</a>
+                </td>
+				<td>
+                    <a href="{{ url("app_product_show", {"product":product.id}) }}">Show</a>
+                </td>
+				<td>
+                    <a href="{{ url("app_product_upd", {"product":product.id}) }}">Update</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">No content available</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

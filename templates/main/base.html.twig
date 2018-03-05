@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    <h1>FORM</h1>
+	{{ form_start(form) }}
+	<div>
+    {{ form_label(form.name) }}
+    {{ form_errors(form.name) }}
+    {{ form_widget(form.name) }}
+    </div>
+	<div>
+    {{ form_label(form.releaseOn) }}
+    {{ form_errors(form.releaseOn) }}
+    {{ form_widget(form.releaseOn) }}
+    </div>
+	{{ form_end(form) }}
+{% endblock %}
