@@ -1,6 +1,5 @@
 #index:
 #    path: /
-<<<<<<< HEAD
 #    controller: App\Controller\DefaultController::index
 
 app_ticket_add:
@@ -10,7 +9,11 @@ app_ticket_add:
 app_ticket_all:
     path: /ticket/all
     controller: App\Controller\TicketController::ticket
-
-=======
-#    controller: App\Controller\DefaultController::index
->>>>>>> 20023f1c818962f661715ba0268e7eeb7a7f37ec
+    
+app_ticket_log:
+    path: /public
+    controller: App\Controller\ConnexionController::register
+    
+app_ticket_co:
+    path: /login
+    controller: App\Controller\ConnexionController::login
