@@ -17,3 +17,15 @@ app_ticket_log:
 app_ticket_co:
     path: /login
     controller: App\Controller\ConnexionController::login
+    
+app_ticket_acc:
+    path: /acceuil
+    controller: App\Controller\TicketController::acceuil
+    
+app_ticket_mesTickets:
+    path: /ticket/me
+    controller: App\Controller\TicketController::mesTickets
+    
+app_ticket_stats:
+    path: /ticket/stats
+    controller: App\Controller\TicketController::stats
