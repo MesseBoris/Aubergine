@@ -44,4 +44,28 @@ class TicketController extends Controller
 		}
 		return $this->render("add.html.twig", ["form" => $form->createView()]);
 	}
+	
+	/**
+     * @Route("/acceuil") //add this comment to annotations
+     */
+	 public function acceuil()
+	 {
+		 return $this->render("acceuil.html.twig");
+	 }
+	 
+	 /**
+     * @Route("/ticket/me") //add this comment to annotations
+     */
+	 public function mesTickets()
+	 {
+		 return $this->render("mesTickets.html.twig");
+	 }
+	 
+	 /**
+     * @Route("/ticket/stats") //add this comment to annotations
+     */
+	 public function stats()
+	 {
+		 return $this->render("stats.html.twig");
+	 }
 }

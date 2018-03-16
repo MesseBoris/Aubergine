@@ -9,11 +9,13 @@
 		<tr>
             <th>poste</th>
 			<th>description</th>
+			<th>action</th>
         </tr>
 		{% for ticket in tickets %}
             <tr>
                 <td>{{ ticket.poste }}</td>
 				<td>{{ ticket.description }}</td>
+				<td><a href="">Commenter</a><a href="">Traiter</a><a href="">Rediriger</a><a href="">Clore</a></td>
             </tr>
         {% else %}
             <tr>
