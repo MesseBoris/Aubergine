@@ -29,3 +29,11 @@ app_ticket_mesTickets:
 app_ticket_stats:
     path: /ticket/stats
     controller: App\Controller\TicketController::stats
+
+app_ticket_commenter:
+    path: /ticket/commenter/{ticket}
+    controller: App\Controller\TicketController::commenter
+    
+app_ticket_clore:
+    path: /ticket/clore/{ticket}
+    controller: App\Controller\TicketController::clore

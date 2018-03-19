@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Commentaire;
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TicketRepository")
@@ -83,5 +85,80 @@ class Ticket
 		
 		return $this;
     }
+	
+	/**
+	 * @ORM\Column(type="text", length=255, nullable=true)
+	 */
+	private $qualification;
+	
+	/**
+	 * Get qualification
+	 *
+	 *@return string
+	 */
+	public function getQualification()
+    {
+        return $this->qualification;
+    }
 
+	/**
+	 * Set qualification
+	 *
+	 *@param string $qualification
+	 *
+	 *@return Ticket
+	 */
+    public function setQuelification($qual)
+    {
+        $this->qualification = $qual;
+		
+		return $this;
+    }
+	
+	/**
+	 * @ORM\Column(type="boolean")
+	 */
+	private $etat;
+	
+	/**
+	 * Get etat
+	 *@return bool
+	 */
+	public function getEtat()
+    {
+        return $this->etat;
+    }
+	
+	
+
+	/**
+	 * Set etat
+	 *
+	 *@param bool $etat
+	 *
+	 *@return Ticket
+	 */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+		
+		return $this;
+    }
+	
+	/**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="User")
+     * @ORM\JoinColumn(nullable=true)
+     */
+   private $user;
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+    }
+	
 }

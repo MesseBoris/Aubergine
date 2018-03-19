@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
     </head>
     <body>
-	<a href="{{ url("app_ticket_add") }}">Add</a>
+	<h2>Tickets ouverts</h2>
 	<table class="table">
 		<tr>
             <th>poste</th>
@@ -12,16 +12,43 @@
 			<th>action</th>
         </tr>
 		{% for ticket in tickets %}
+			{% if ticket.etat %}
             <tr>
                 <td>{{ ticket.poste }}</td>
 				<td>{{ ticket.description }}</td>
-				<td><a href="">Commenter</a><a href="">Traiter</a><a href="">Rediriger</a><a href="">Clore</a></td>
+				<td>
+					<a href="{{ url("app_ticket_commenter", {"ticket":ticket.id}) }}">Commenter</a>
+					<a href="">Traiter</a>
+					<a href="">Rediriger</a>
+					<a href="{{ url("app_ticket_clore", {"ticket":ticket.id}) }}">Clore</a>
+				</td>
             </tr>
+			{% endif %}
         {% else %}
             <tr>
                 <td colspan="3">C'est vide</td>
             </tr>
         {% endfor %}
-    </body>
 	</table>
+	
+	<h2>Tickets clos</h2>
+	<table class="table">
+		<tr>
+            <th>poste</th>
+			<th>description</th>
+			<th>action</th>
+        </tr>
+		{% for ticket in tickets %}
+			{% if ticket.etat != true%}
+            <tr>
+                <td>{{ ticket.poste }}</td>
+				<td>{{ ticket.description }}</td> </tr>
+			{% endif %}
+        {% else %}
+            <tr>
+                <td colspan="3">C'est vide</td>
+            </tr>
+        {% endfor %}
+	</table>
+    </body>
 </html>
