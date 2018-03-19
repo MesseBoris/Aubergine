@@ -7,9 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Commentaire;
 use Symfony\Component\Routing\Annotation\Route; //add this line to add usage of Route class.
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\CommentaireType;
+use App\Form\TicketType;
 use Symfony\Component\HttpFoundation\Request;
 
 class TicketController extends Controller
@@ -33,6 +32,9 @@ class TicketController extends Controller
 		if($ticket ==null )
 			$ticket = new Ticket();
 		
+		$em = $this->getDoctrine()->getManager();
+		
+		$form = $this->createForm(TicketType::class, $ticket);
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 			$ticket->setEtat(true);

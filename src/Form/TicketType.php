@@ -4,7 +4,7 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormTypeInterface;
-use App\Entity\Commentaire;
+use App\Entity\Ticket;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,17 +17,24 @@ class TicketType extends AbstractType
         $builder
 			->add("poste", TextType::class)
 			->add("description",Texttype::class)
-			->add("qualification", ChoiceType::class,array('choices'=> array(
+			->add("qualification", ChoiceType::class,array(
+				'choices'=> array(
+					'Matériel'=>"Matériel",
+					'Logiciel'=>"Logiciel",
+					)
+				)
+			)
+			->add("prequalification", TextType::class)
 			
-			)))
+			
 			->add("save", SubmitType::class, ["label" => "créer ticket"])
-			->getForm();
+			;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Commentaire::class,
+            'data_class' => Ticket::class,
         ));
     }
 }

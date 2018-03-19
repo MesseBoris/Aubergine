@@ -108,7 +108,7 @@ class Ticket
 	 *
 	 *@return Ticket
 	 */
-    public function setQuelification($qual)
+    public function setQualification($qual)
     {
         $this->qualification = $qual;
 		
@@ -116,7 +116,37 @@ class Ticket
     }
 	
 	/**
-	 * @ORM\Column(type="boolean")
+	 * @ORM\Column(type="text", length=255, nullable=true)
+	 */
+	private $prequalification;
+	
+	/**
+	 * Get prequalification
+	 *
+	 *@return string
+	 */
+	public function getPrequalification()
+    {
+        return $this->prequalification;
+    }
+
+	/**
+	 * Set prequalification
+	 *
+	 *@param string $prequalification
+	 *
+	 *@return Ticket
+	 */
+    public function setPrequalification($qual)
+    {
+        $this->prequalification = $qual;
+		
+		return $this;
+    }
+	
+	
+	/**
+	 * @ORM\Column(type="boolean",nullable=false)
 	 */
 	private $etat;
 	
@@ -144,6 +174,31 @@ class Ticket
 		
 		return $this;
     }
+	
+	/**
+	 * 
+	 * @ORM\Column(type="datetime")
+	 */
+	protected $releaseOn;
+
+	/**
+	* Get releaseOn
+	* @return date
+	*/
+
+	public function getReleaseOn(){
+			return $this->releaseOn;
+	}
+
+	/**
+	* Set releaseOn
+	* @param date $releaseOn 
+	* @return Ticket
+	*/
+
+	public function setReleaseOn(\DateTime $releaseOn = null){
+			$this ->releaseOn = $releaseOn;
+	}
 	
 	/**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="User")
