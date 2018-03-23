@@ -1,58 +1,55 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
+
+	{% extends "base.html.twig" %}
+
+	{% block body %}
 	<h2>Tickets ouverts</h2>
 	<table class="table">
 		<tr>
-            <th>poste</th>
+			<th>poste</th>
 			<th>description</th>
 			<th>qualification</th>
 			<th>prequalification</th>
 			<th>action</th>
-        </tr>
+		</tr>
 		{% for ticket in tickets %}
-			{% if ticket.etat %}
-            <tr>
-                <td>{{ ticket.poste }}</td>
-				<td>{{ ticket.description }}</td>
-				<td>{{ ticket.qualification }}</td>
-				<td>{{ ticket.prequalification }}</td>
-				<td>
-					<a href="{{ url("app_ticket_commenter", {"ticket":ticket.id}) }}">Commenter</a>
-					<a href="">Traiter</a>
-					<a href="">Rediriger</a>
-					<a href="{{ url("app_ticket_clore", {"ticket":ticket.id}) }}">Clore</a>
-				</td>
-            </tr>
-			{% endif %}
-        {% else %}
-            <tr>
-                <td colspan="3">C'est vide</td>
-            </tr>
-        {% endfor %}
+		{% if ticket.etat %}
+		<tr>
+			<td>{{ ticket.poste }}</td>
+			<td>{{ ticket.description }}</td>
+			<td>{{ ticket.qualification }}</td>
+			<td>{{ ticket.prequalification }}</td>
+			<td>
+				<a href="{{ url("app_ticket_commenter", {"ticket":ticket.id}) }}">Commenter</a>
+				<a href="">Traiter</a>
+				<a href="">Rediriger</a>
+				<a href="{{ url("app_ticket_clore", {"ticket":ticket.id}) }}">Clore</a>
+			</td>
+		</tr>
+		{% endif %}
+		{% else %}
+		<tr>
+			<td colspan="3">C'est vide</td>
+		</tr>
+		{% endfor %}
 	</table>
 	
 	<h2>Tickets clos</h2>
 	<table class="table">
 		<tr>
-            <th>poste</th>
+			<th>poste</th>
 			<th>description</th>
 			<th>action</th>
-        </tr>
+		</tr>
 		{% for ticket in tickets %}
-			{% if ticket.etat != true%}
-            <tr>
-                <td>{{ ticket.poste }}</td>
-				<td>{{ ticket.description }}</td> </tr>
+		{% if ticket.etat != true%}
+		<tr>
+			<td>{{ ticket.poste }}</td>
+			<td>{{ ticket.description }}</td> </tr>
 			{% endif %}
-        {% else %}
-            <tr>
-                <td colspan="3">C'est vide</td>
-            </tr>
-        {% endfor %}
-	</table>
-    </body>
-</html>
+			{% else %}
+			<tr>
+				<td colspan="3">C'est vide</td>
+			</tr>
+			{% endfor %}
+		</table>
+	{% endblock %}

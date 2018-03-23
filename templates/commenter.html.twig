@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('style.css')}}">
+</head>
+<!-- {% extends "base.html.twig" %} -->
+<body>
+
 	<h1>COMMENTER</h1>
 	{% for comm in comms %}
-                <p>{{ comm.texte }}</p>
-        {% else %}
-                <p>C'est vide</p>
-        {% endfor %}
-	{{ form_start(form) }}
-	<div>
-    {{ form_label(form.texte) }}
-    {{ form_errors(form.texte) }}
-    {{ form_widget(form.texte) }}
+    <p>{{ comm.texte }}</p>
+    {% else %}
+    <p>C'est vide</p>
+    {% endfor %}
+    {{ form_start(form) }}
+    <div>
+        {{ form_label(form.texte) }}
+        {{ form_errors(form.texte) }}
+        {{ form_widget(form.texte) }}
     </div>
-	{{ form_end(form) }}
-</html>
+    {{ form_end(form) }}
+    </html>

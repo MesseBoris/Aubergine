@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
+<head>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
 	<h1>ACCUEIL</h1>
-	<a href="{{ url("app_ticket_add") }}">Déposer ticket</a>
-	<a href="{{url("app_ticket_mesTickets") }}">Consulter mes tickets</a>
-	<a href="{{ url("app_ticket_all") }}">Visualiser tickets</a>
-	<a href="{{url("app_ticket_stats") }}">Rapport stats</a>
+	<div class="Links">
+		<a class="LiensAccueil" href="{{ url("app_ticket_add") }}">Déposer ticket</a>
+		<a class="LiensAccueil" href="{{url("app_ticket_mesTickets") }}">Consulter mes tickets</a>
+		<a class="LiensAccueil" href="{{ url("app_ticket_all") }}">Visualiser tickets</a>
+		<a class="LiensAccueil" href="{{url("app_ticket_stats") }}">Rapport stats</a>
+	</div>
+</body>
 </html>

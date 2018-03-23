@@ -1,0 +1,61 @@
+html body{
+	margin: 0px;
+	font-family: 'Roboto';
+}
+
+h1{
+	text-align: center;
+}
+
+label{
+	display: inline-block;
+	width : 200px;
+}
+
+input{
+	width: 200px;
+}
+
+select{
+	width: 200px;
+}
+
+ul{
+	background-color: #1e272e;
+	margin: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+li{
+	display: inline-block;
+	padding-left: 15px;
+	color: white;
+}
+
+.Deco{
+	float: right;
+	padding-right: 20px;
+}
+
+a{
+	text-decoration: none;
+}
+
+.Nav{
+	color: white;
+}
+
+.LiensAccueil{
+	color: black;
+	text-align: center;
+	color: black;
+	background-color: #bdc3c7;
+	padding : 5px;
+	margin: 10px;
+	text-decoration: none;	
+}
+
+form{
+	margin-left: 50px;
+}
