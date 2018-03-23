@@ -2,6 +2,11 @@ index:
     path: /acceuil
     controller: App\Controller\ConnexionController::acceuil
     
+redirect:
+    path: /
+    controller: App\Controller\ConnexionController::redir
+    
+    
 app_ticket_co:
     path: /login
     controller: App\Controller\ConnexionController::login

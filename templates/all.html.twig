@@ -46,7 +46,6 @@
 		<tr>
             <th>poste</th>
 			<th>description</th>
-			<th>action</th>
 			<th>Résolu</th>
         </tr>
 		{% for ticket in tickets %}
@@ -61,6 +60,7 @@
 						NON
 					{%endif%}
 				</td>
+			</tr>
 			{% endif %}
         {% else %}
             <tr>

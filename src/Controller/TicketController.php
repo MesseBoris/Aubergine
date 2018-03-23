@@ -27,6 +27,14 @@ class TicketController extends Controller
     }
 	
 	/**
+     * @Route("/") //add this comment to annotations
+     */
+	public function redir()
+    {
+		return $this->redirectToRoute("index");
+    }
+	
+	/**
      * @Route("/ticket/add") //add this comment to annotations
      */
     public function add(Request $request, Ticket $ticket=null)
