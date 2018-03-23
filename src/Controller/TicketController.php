@@ -4,7 +4,9 @@ namespace App\Controller;
 use App\Entity\Ticket;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use DateTime;
 use App\Entity\Commentaire;
+use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route; //add this line to add usage of Route class.
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Form\CommentaireType;
@@ -25,10 +27,27 @@ class TicketController extends Controller
     }
 	
 	/**
+     * @Route("/") //add this comment to annotations
+     */
+	public function redir()
+    {
+		return $this->redirectToRoute("index");
+    }
+	
+	/**
+     * @Route("/logout") //add this comment to annotations
+     */
+	public function logout()
+    {
+		return $this->redirectToRoute("acceuil");
+    }
+	
+	/**
      * @Route("/ticket/add") //add this comment to annotations
      */
     public function add(Request $request, Ticket $ticket=null)
     {
+		$user = $this->getUser();
 		if($ticket ==null )
 			$ticket = new Ticket();
 		
@@ -37,8 +56,10 @@ class TicketController extends Controller
 		$form = $this->createForm(TicketType::class, $ticket);
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
+			$ticket->setReleaseOn(new DateTime());
 			$ticket->setEtat(true);
-			$em = $this->getDoctrine()->getManager();
+			$ticket->setValidated(false);
+			$ticket->setUser($user);
 			$em->persist($ticket);
 			$em->flush();
 			return $this->redirectToRoute("app_ticket_all");

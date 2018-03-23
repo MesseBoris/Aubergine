@@ -15,6 +15,9 @@ security:
             form_login:
                 login_path: app_ticket_co
                 check_path: app_ticket_co
+            logout:
+                path: /logout
+                target: /
 
             # activate different ways to authenticate
 
@@ -27,7 +30,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used ROLE_USER
     access_control:
-        - { path: ^/public, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/ticket/add, roles: ROLE_USER }
+        - { path: ^/all, roles: ROLE_ADMIN }
+        - { path: ^/acceuil, roles: ROLE_USER }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles:  IS_AUTHENTICATED_ANONYMOUSLY}
     

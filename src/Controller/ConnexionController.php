@@ -31,10 +31,14 @@ class ConnexionController extends Controller
 			$password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
 			$user->setPassword($password);
 
+			$entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
 			// ... do any other work - like sending them an email, etc
 			// maybe set a "flash" success message for the user
 
-			return $this->redirectToRoute('app_ticket_all');
+			return $this->redirect('acceuil');
 		}
 
 		return $this->render(
@@ -55,6 +59,7 @@ class ConnexionController extends Controller
 			'last_username' => $lastUsername,
 			'error'         => $error,
 		));
+
 	}
 
 }

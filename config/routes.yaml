@@ -1,6 +1,19 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /acceuil
+    controller: App\Controller\ConnexionController::acceuil
+    
+logout:
+    path: /logout
+    controller: App\Controller\ConnexionController::logout
+    
+redirect:
+    path: /
+    controller: App\Controller\ConnexionController::redir
+    
+    
+app_ticket_co:
+    path: /login
+    controller: App\Controller\ConnexionController::login
 
 app_ticket_add:
     path: /ticket/add
@@ -14,9 +27,6 @@ app_ticket_log:
     path: /public
     controller: App\Controller\ConnexionController::register
     
-app_ticket_co:
-    path: /login
-    controller: App\Controller\ConnexionController::login
     
 app_ticket_acc:
     path: /acceuil

@@ -8,8 +8,8 @@
 			<th>poste</th>
 			<th>description</th>
 			<th>qualification</th>
-			<th>prequalification</th>
 			<th>action</th>
+<<<<<<< HEAD
 		</tr>
 		{% for ticket in tickets %}
 		{% if ticket.etat %}
@@ -31,6 +31,36 @@
 			<td colspan="3">C'est vide</td>
 		</tr>
 		{% endfor %}
+=======
+			<th>Résolu</th>
+        </tr>
+		{% for ticket in tickets %}
+			{% if ticket.etat %}
+            <tr>
+                <td>{{ ticket.poste }}</td>
+				<td>{{ ticket.description }}</td>
+				<td>{{ ticket.qualification }}</td>
+				<td>
+					<a href="{{ url("app_ticket_commenter", {"ticket":ticket.id}) }}">Commenter</a>
+					<a href="">Traiter</a>
+					<a href="">Rediriger</a>
+					<a href="{{ url("app_ticket_clore", {"ticket":ticket.id}) }}">Clore</a>
+				</td>
+				<td>
+					{%if ticket.validated%}
+						OUI
+					{%else%}
+						NON
+					{%endif%}
+				</td>
+            </tr>
+			{% endif %}
+        {% else %}
+            <tr>
+                <td colspan="3">C'est vide</td>
+            </tr>
+        {% endfor %}
+>>>>>>> 3470ea385d72d57e4718141d081db32155cd6c1b
 	</table>
 	
 	<h2>Tickets clos</h2>
@@ -38,6 +68,7 @@
 		<tr>
 			<th>poste</th>
 			<th>description</th>
+<<<<<<< HEAD
 			<th>action</th>
 		</tr>
 		{% for ticket in tickets %}
@@ -53,3 +84,30 @@
 			{% endfor %}
 		</table>
 	{% endblock %}
+=======
+			<th>Résolu</th>
+        </tr>
+		{% for ticket in tickets %}
+			{% if ticket.etat != true%}
+            <tr>
+                <td>{{ ticket.poste }}</td>
+				<td>{{ ticket.description }}</td> </tr>
+				<td>
+					{%if ticket.validated%}
+						OUI
+					{%else%}
+						NON
+					{%endif%}
+				</td>
+			</tr>
+			{% endif %}
+        {% else %}
+            <tr>
+                <td colspan="3">C'est vide</td>
+            </tr>
+			
+        {% endfor %}
+	</table>
+    </body>
+</html>
+>>>>>>> 3470ea385d72d57e4718141d081db32155cd6c1b

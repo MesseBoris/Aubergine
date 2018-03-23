@@ -18,13 +18,21 @@ class TicketType extends AbstractType
 			->add("poste", TextType::class)
 			->add("description",Texttype::class)
 			->add("qualification", ChoiceType::class,array(
-				'choices'=> array(
-					'Matériel'=>"Matériel",
-					'Logiciel'=>"Logiciel",
-					)
+				'choices' => array(
+					'Logiciel' => array(
+						'Traitement de texte' => 'Traitement de texte',
+						'OS' => 'OS',
+						'ERP' => 'ERP',
+					),
+					'Materiel' => array(
+						'Carte mère' => 'Carte mère',
+						'Alimentation' => 'Alimentation',
+						'Disque dur' => 'Disque dur',
+						'Ecran' => 'Ecran',
+						'Réseau' => 'Réseau',
+					),
 				)
-			)
-			->add("prequalification", TextType::class)
+			))
 			
 			
 			->add("save", SubmitType::class, ["label" => "créer ticket"])

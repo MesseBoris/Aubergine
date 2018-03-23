@@ -115,34 +115,6 @@ class Ticket
 		return $this;
     }
 	
-	/**
-	 * @ORM\Column(type="text", length=255, nullable=true)
-	 */
-	private $prequalification;
-	
-	/**
-	 * Get prequalification
-	 *
-	 *@return string
-	 */
-	public function getPrequalification()
-    {
-        return $this->prequalification;
-    }
-
-	/**
-	 * Set prequalification
-	 *
-	 *@param string $prequalification
-	 *
-	 *@return Ticket
-	 */
-    public function setPrequalification($qual)
-    {
-        $this->prequalification = $qual;
-		
-		return $this;
-    }
 	
 	
 	/**
@@ -176,6 +148,36 @@ class Ticket
     }
 	
 	/**
+	 * @ORM\Column(type="boolean",nullable=false)
+	 */
+	private $validated;
+	
+	/**
+	 * Get validated
+	 *@return bool
+	 */
+	public function getValidated()
+    {
+        return $this->validated;
+    }
+	
+	
+
+	/**
+	 * Set validated
+	 *
+	 *@param bool $validated
+	 *
+	 *@return Ticket
+	 */
+    public function setValidated($validated)
+    {
+        $this->validated = $validated;
+		
+		return $this;
+    }
+	
+	/**
 	 * 
 	 * @ORM\Column(type="datetime")
 	 */
@@ -196,12 +198,12 @@ class Ticket
 	* @return Ticket
 	*/
 
-	public function setReleaseOn(\DateTime $releaseOn = null){
+	public function setReleaseOn($releaseOn){
 			$this ->releaseOn = $releaseOn;
 	}
 	
 	/**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="User",cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
    private $user;
