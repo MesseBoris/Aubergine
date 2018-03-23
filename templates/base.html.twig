@@ -9,10 +9,10 @@
 </head>
 <header>
     <ul>
-        <li>Accueil</li>
+        <li><a class="Nav" href="{{ url("app_ticket_acc") }}">Acceuil</a></li>
         <li><a class="Nav" href="{{ url("app_ticket_add") }}">Déposer ticket</a></li>
-        <li><a class="Nav" href="{{url("app_ticket_mesTickets") }}">Mes tickets</a></li>
-        <li><a class="Nav" href="{{url("app_ticket_stats") }}">Rapport stats</a></li>
+        <li><a class="Nav" href="{{ url("app_ticket_mesTickets") }}">Mes tickets</a></li>
+        <li><a class="Nav" href="{{ url("app_ticket_stats") }}">Rapport stats</a></li>
         <li><a class="Nav" href="{{ url("app_ticket_all") }}">Visualiser tickets</a></li>
         <li class="Deco Nav"><a class="Nav" href="/logout">Déconnexion</a></li>
     </ul>

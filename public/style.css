@@ -47,10 +47,9 @@ a{
 }
 
 .LiensAccueil{
-	color: black;
+	color: white;
 	text-align: center;
-	color: black;
-	background-color: #bdc3c7;
+	background-color: #1e272e;
 	padding : 5px;
 	margin: 10px;
 	text-decoration: none;	
