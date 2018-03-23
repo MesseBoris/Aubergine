@@ -196,7 +196,7 @@ class Ticket
 	* @return Ticket
 	*/
 
-	public function setReleaseOn(\DateTime $releaseOn = null){
+	public function setReleaseOn($releaseOn){
 			$this ->releaseOn = $releaseOn;
 	}
 	
