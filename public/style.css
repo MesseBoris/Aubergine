@@ -58,3 +58,11 @@ a{
 form{
 	margin-left: 50px;
 }
+
+.paragraph{
+	margin-left: 50px;
+}
+
+tr{
+	border: solid;
+}
