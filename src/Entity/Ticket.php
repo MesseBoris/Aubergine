@@ -137,9 +137,9 @@ class Ticket
 	 *
 	 *@return Ticket
 	 */
-    public function setPrequalification($qual)
+    public function setPrequalification($prequal)
     {
-        $this->prequalification = $qual;
+        $this->prequalification = $prequal;
 		
 		return $this;
     }
