@@ -2,6 +2,10 @@ index:
     path: /acceuil
     controller: App\Controller\ConnexionController::acceuil
     
+logout:
+    path: /logout
+    controller: App\Controller\ConnexionController::logout
+    
 redirect:
     path: /
     controller: App\Controller\ConnexionController::redir

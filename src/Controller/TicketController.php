@@ -35,6 +35,14 @@ class TicketController extends Controller
     }
 	
 	/**
+     * @Route("/logout") //add this comment to annotations
+     */
+	public function logout()
+    {
+		return $this->redirectToRoute("acceuil");
+    }
+	
+	/**
      * @Route("/ticket/add") //add this comment to annotations
      */
     public function add(Request $request, Ticket $ticket=null)
