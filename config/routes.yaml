@@ -1,5 +1,9 @@
 index:
-    path: /
+    path: /acceuil
+    controller: App\Controller\ConnexionController::acceuil
+    
+app_ticket_co:
+    path: /login
     controller: App\Controller\ConnexionController::login
 
 app_ticket_add:

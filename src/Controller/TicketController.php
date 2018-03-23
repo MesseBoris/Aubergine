@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use DateTime;
 use App\Entity\Commentaire;
+use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route; //add this line to add usage of Route class.
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Form\CommentaireType;
@@ -30,6 +31,7 @@ class TicketController extends Controller
      */
     public function add(Request $request, Ticket $ticket=null)
     {
+		$user = $this->getUser();
 		if($ticket ==null )
 			$ticket = new Ticket();
 		
@@ -40,7 +42,8 @@ class TicketController extends Controller
 		if ($form->isSubmitted() && $form->isValid()) {
 			$ticket->setReleaseOn(new DateTime());
 			$ticket->setEtat(true);
-			$em = $this->getDoctrine()->getManager();
+			$ticket->setValidated(false);
+			$ticket->setUser($user);
 			$em->persist($ticket);
 			$em->flush();
 			return $this->redirectToRoute("app_ticket_all");

@@ -148,6 +148,36 @@ class Ticket
     }
 	
 	/**
+	 * @ORM\Column(type="boolean",nullable=false)
+	 */
+	private $validated;
+	
+	/**
+	 * Get validated
+	 *@return bool
+	 */
+	public function getValidated()
+    {
+        return $this->validated;
+    }
+	
+	
+
+	/**
+	 * Set validated
+	 *
+	 *@param bool $validated
+	 *
+	 *@return Ticket
+	 */
+    public function setValidated($validated)
+    {
+        $this->validated = $validated;
+		
+		return $this;
+    }
+	
+	/**
 	 * 
 	 * @ORM\Column(type="datetime")
 	 */
@@ -173,7 +203,7 @@ class Ticket
 	}
 	
 	/**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="User",cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
    private $user;

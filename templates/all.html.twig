@@ -11,6 +11,7 @@
 			<th>description</th>
 			<th>qualification</th>
 			<th>action</th>
+			<th>Résolu</th>
         </tr>
 		{% for ticket in tickets %}
 			{% if ticket.etat %}
@@ -23,6 +24,13 @@
 					<a href="">Traiter</a>
 					<a href="">Rediriger</a>
 					<a href="{{ url("app_ticket_clore", {"ticket":ticket.id}) }}">Clore</a>
+				</td>
+				<td>
+					{%if ticket.validated%}
+						OUI
+					{%else%}
+						NON
+					{%endif%}
 				</td>
             </tr>
 			{% endif %}
@@ -39,17 +47,26 @@
             <th>poste</th>
 			<th>description</th>
 			<th>action</th>
+			<th>Résolu</th>
         </tr>
 		{% for ticket in tickets %}
 			{% if ticket.etat != true%}
             <tr>
                 <td>{{ ticket.poste }}</td>
 				<td>{{ ticket.description }}</td> </tr>
+				<td>
+					{%if ticket.validated%}
+						OUI
+					{%else%}
+						NON
+					{%endif%}
+				</td>
 			{% endif %}
         {% else %}
             <tr>
                 <td colspan="3">C'est vide</td>
             </tr>
+			
         {% endfor %}
 	</table>
     </body>

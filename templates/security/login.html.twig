@@ -5,7 +5,7 @@
 		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 	{% endif %}
 
-	<form action="{{ path('index') }}" method="post">
+	<form action="{{ path('app_ticket_co') }}" method="post">
 		<label for="username">Username:</label>
 		<input type="text" id="username" name="_username" value="{{ last_username }}" />
 
@@ -17,7 +17,9 @@
 			is redirected to on success (more details below)
 			<input type="hidden" name="_target_path" value="/account" />
 		#}
-		<input type="hidden" name="_target_path" value="/acceuil" />
-		<button type="submit">Se connecter</button>
+
+		<button type="submit">login</button>
 	</form>
+	
+	<a href="{{ url("app_ticket_log") }}">Inscription</a>
 {% endblock %}
