@@ -115,34 +115,6 @@ class Ticket
 		return $this;
     }
 	
-	/**
-	 * @ORM\Column(type="text", length=255, nullable=true)
-	 */
-	private $prequalification;
-	
-	/**
-	 * Get prequalification
-	 *
-	 *@return string
-	 */
-	public function getPrequalification()
-    {
-        return $this->prequalification;
-    }
-
-	/**
-	 * Set prequalification
-	 *
-	 *@param string $prequalification
-	 *
-	 *@return Ticket
-	 */
-    public function setPrequalification($qual)
-    {
-        $this->prequalification = $qual;
-		
-		return $this;
-    }
 	
 	
 	/**
