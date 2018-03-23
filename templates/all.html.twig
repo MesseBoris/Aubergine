@@ -10,7 +10,6 @@
             <th>poste</th>
 			<th>description</th>
 			<th>qualification</th>
-			<th>prequalification</th>
 			<th>action</th>
         </tr>
 		{% for ticket in tickets %}
@@ -19,7 +18,6 @@
                 <td>{{ ticket.poste }}</td>
 				<td>{{ ticket.description }}</td>
 				<td>{{ ticket.qualification }}</td>
-				<td>{{ ticket.prequalification }}</td>
 				<td>
 					<a href="{{ url("app_ticket_commenter", {"ticket":ticket.id}) }}">Commenter</a>
 					<a href="">Traiter</a>

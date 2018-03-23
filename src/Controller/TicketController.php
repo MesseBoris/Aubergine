@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Ticket;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use DateTime;
 use App\Entity\Commentaire;
 use Symfony\Component\Routing\Annotation\Route; //add this line to add usage of Route class.
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -37,6 +38,7 @@ class TicketController extends Controller
 		$form = $this->createForm(TicketType::class, $ticket);
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
+			$ticket->setReleaseOn(new DateTime());
 			$ticket->setEtat(true);
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($ticket);
