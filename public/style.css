@@ -63,6 +63,16 @@ form{
 	margin-left: 50px;
 }
 
-tr{
+.TicketsTables{
+	margin-left: 50px;
+}
+
+table {
+	border-collapse: collapse;
 	border: solid;
+}
+
+th, tr, td{
+	border: solid;
+	padding: 5px;
 }

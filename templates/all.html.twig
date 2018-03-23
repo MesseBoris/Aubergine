@@ -2,6 +2,7 @@
 	{% extends "base.html.twig" %}
 
 	{% block body %}
+	<div class="TicketsTables">
 	<h2>Tickets ouverts</h2>
 	<table class="table">
 		<tr>
@@ -38,7 +39,9 @@
             </tr>
         {% endfor %}
 	</table>
-	
+	</div>
+
+	<div class="TicketsTables">
 	<h2>Tickets clos</h2>
 	<table class="table">
 		<tr>
@@ -50,7 +53,7 @@
 			{% if ticket.etat != true%}
             <tr>
                 <td>{{ ticket.poste }}</td>
-				<td>{{ ticket.description }}</td> </tr>
+				<td>{{ ticket.description }}</td>
 				<td>
 					{%if ticket.validated%}
 						OUI
@@ -67,4 +70,5 @@
 			
         {% endfor %}
 	</table>
+	</div>
     {% endblock %}
