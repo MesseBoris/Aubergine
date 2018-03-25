@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+	{% block body %}
+	<h2>Sélectionner redirection</h2>
+	{%for user in users%}
+		<a href="{{ url("app_ticket_redir2", {"ticket":ticket.id},{"user":user.id}) }}">{{user.pseudo}}</a>
+	{%else%}
+		<p>Personne de disponible</p>
+	{%endfor%}
+	
+	{%endblock%}

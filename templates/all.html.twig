@@ -20,7 +20,7 @@
 				<td>
 					<a href="{{ url("app_ticket_commenter", {"ticket":ticket.id}) }}">Commenter</a>
 					<a href="{{ url("app_ticket_traiter", {"ticket":ticket.id}) }}">Traiter</a>
-					<a href="">Rediriger</a>
+					<a href="{{ url("app_ticket_redir", {"ticket":ticket.id}) }}">Rediriger</a>
 					<a href="{{ url("app_ticket_clore", {"ticket":ticket.id}) }}">Clore</a>
 				</td>
 				<td>

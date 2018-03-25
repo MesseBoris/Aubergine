@@ -40,11 +40,46 @@ class TicketController extends Controller
         return $this->render("all.html.twig", ["tickets" => $tickets,'user'=>$user]);
     }
 	
-	/**
-     * @Route("/") //add this comment to annotations
-     */
-	public function redir()
+	
+	public function redir($ticket)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$useres = $em->getRepository(User::class)->findAll();
+		$users=[];
+		foreach($useres as $user)
+			foreach($user->getRoles() as $role)
+				if($role=="ROLE_ADMIN")
+					$users[]=$user;
+		return $this->render("select.html.twig", ["ticket" => $ticket,'users'=>$users]);
+	}
+	
+	
+	public function redir2($ticket, $user)
     {
+		$em = $this->getDoctrine()->getManager();
+        $ticket = $em->getRepository(Ticket::class)->find($ticket);
+		
+		$temp=false;
+		$ticket->updateNbRedir();
+		if($ticket->getNbRedir<=3)
+		{
+			$comp = $em->getRepository(User::class)->find($user);
+			foreach($comp->getRoles() as $role)
+			{
+				if($role==$ticket->getQualification())
+					$temp=true;
+			}
+		}
+		else
+		{
+			$comp = $em->getRepository(User::class)->find(1);
+		}
+		
+		if($temp==false)
+			$comp = $em->getRepository(User::class)->find(1);
+		
+		$ticket->setComp($comp);
+		$comp->addTicket($ticket);
 		return $this->redirectToRoute("index");
     }
 	
@@ -84,7 +119,7 @@ class TicketController extends Controller
 			{
 				foreach($usere->getRoles() as $role)
 				{
-					if($role != 'ROLE_ADMIN')
+					if($role == 'ROLE_ADMIN')
 					{
 						foreach($usere->getCompetences() as $comp)
 							if($comp== $ticket->getQualification())

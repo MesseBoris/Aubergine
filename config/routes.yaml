@@ -48,6 +48,14 @@ app_ticket_traiter:
     path: /ticket/traiter/{ticket}
     controller: App\Controller\TicketController::traiter
     
+app_ticket_redir:
+    path: /ticket/redir/{ticket}
+    controller: App\Controller\TicketController::redir
+    
+app_ticket_redir2:
+    path: /ticket/redir2/{ticket}{user}
+    controller: App\Controller\TicketController::redir2
+    
 
     
 app_ticket_fin:
