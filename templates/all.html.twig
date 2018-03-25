@@ -34,7 +34,7 @@
 			{% endif %}
         {% else %}
             <tr>
-                <td colspan="3">C'est vide</td>
+                <td colspan="3">Aucun ticket</td>
             </tr>
         {% endfor %}
 	</table>
@@ -50,7 +50,7 @@
 			{% if ticket.etat != true%}
             <tr>
                 <td>{{ ticket.poste }}</td>
-				<td>{{ ticket.description }}</td> </tr>
+				<td>{{ ticket.description }}</td>
 				<td>
 					{%if ticket.validated%}
 						OUI
@@ -62,7 +62,7 @@
 			{% endif %}
         {% else %}
             <tr>
-                <td colspan="3">C'est vide</td>
+                <td colspan="3">Aucun ticket</td>
             </tr>
 			
         {% endfor %}
