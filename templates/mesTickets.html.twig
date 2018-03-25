@@ -1,5 +1,63 @@
 
-{% extends "base.html.twig" %}
-{% block body %}
-	<h1>MES TICKETS</h1>
-{% endblock %}
+	{% extends "base.html.twig" %}
+
+	{% block body %}
+	<h2>Tickets ouverts</h2>
+	<table class="table">
+		<tr>
+			<th>poste</th>
+			<th>description</th>
+			<th>qualification</th>
+			<th>Résolu</th>
+        </tr>
+		{% for ticket in tickets %}
+			{% if ticket.etat %}
+            <tr>
+                <td>{{ ticket.poste }}</td>
+				<td>{{ ticket.description }}</td>
+				<td>{{ ticket.qualification.libelle }}</td>
+				<td>
+					{%if ticket.validated%}
+						OUI
+					{%else%}
+						NON
+					{%endif%}
+				</td>
+            </tr>
+			{% endif %}
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun ticket</td>
+            </tr>
+        {% endfor %}
+	</table>
+	
+	<h2>Tickets clos</h2>
+	<table class="table">
+		<tr>
+			<th>poste</th>
+			<th>description</th>
+			<th>Résolu</th>
+        </tr>
+		{% for ticket in tickets %}
+			{% if ticket.etat != true%}
+            <tr>
+                <td>{{ ticket.poste }}</td>
+				<td>{{ ticket.description }}</td>
+				<td>
+					{%if ticket.validated%}
+						OUI
+					{%else%}
+						NON
+					{%endif%}
+				</td>
+			</tr>
+			{% endif %}
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun ticket</td>
+            </tr>
+			
+        {% endfor %}
+	</table>
+    {% endblock %}

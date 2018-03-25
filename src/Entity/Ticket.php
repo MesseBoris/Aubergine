@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Commentaire;
 use App\Entity\User;
+use App\Entity\Competence;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TicketRepository")
@@ -26,6 +27,31 @@ class Ticket
 	public function getId()
     {
         return $this->id;
+    }
+	
+	/**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nbRedir;
+	
+	/**
+	 * Get nbRedir
+	 *
+	 *@return integer
+	 */
+	public function getNbRedir()
+    {
+        return $this->nbRedir;
+    }
+	
+	public function setNbRedir($nb)
+    {
+        return $this->nbRedir = $nb;
+    }
+	
+	public function updateNbRedir()
+    {
+        return $this->nbRedir++;
     }
 
     /**
@@ -87,8 +113,9 @@ class Ticket
     }
 	
 	/**
-	 * @ORM\Column(type="text", length=255, nullable=true)
-	 */
+     * @ORM\ManyToOne(targetEntity="App\Entity\Competence", inversedBy="Competence",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
 	private $qualification;
 	
 	/**
@@ -108,7 +135,7 @@ class Ticket
 	 *
 	 *@return Ticket
 	 */
-    public function setQualification($qual)
+    public function setQualification(Competence $qual)
     {
         $this->qualification = $qual;
 		
@@ -216,6 +243,22 @@ class Ticket
     public function setUser(User $user)
     {
         $this->user = $user;
+    }
+	
+	/**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="User",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+   private $comp;
+
+    public function getComp(): User
+    {
+        return $this->comp;
+    }
+
+    public function setComp(User $user)
+    {
+        $this->comp = $user;
     }
 	
 }

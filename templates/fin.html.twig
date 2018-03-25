@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+	{% block body %}
+	
+	<h1>Le problème est-il résolu ?</h1>
+	<a href="{{ url("app_ticket_valider", {"ticket":ticket.id}) }}">Oui</a>
+	<a href="{{ url("app_ticket_all") }}">Non</a>
+
+	 {% endblock %}

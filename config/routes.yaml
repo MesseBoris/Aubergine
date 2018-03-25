@@ -44,6 +44,16 @@ app_ticket_commenter:
     path: /ticket/commenter/{ticket}
     controller: App\Controller\TicketController::commenter
     
-app_ticket_clore:
-    path: /ticket/clore/{ticket}
-    controller: App\Controller\TicketController::clore
+app_ticket_traiter:
+    path: /ticket/traiter/{ticket}
+    controller: App\Controller\TicketController::traiter
+    
+
+    
+app_ticket_fin:
+    path: /ticket/fin/{ticket}
+    controller: App\Controller\TicketController::fin
+    
+app_ticket_valider:
+    path: /ticket/valider/{ticket}
+    controller: App\Controller\TicketController::valider

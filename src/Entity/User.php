@@ -4,16 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface as UserInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -119,6 +116,28 @@ class User implements UserInterface
     }
 	
 	/**
+	* @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="user", cascade={"persist","remove"})
+	**/
+    private $tickets;
+
+  public function addTicket(Ticket $ticket)
+  {
+    $this->tickets[] = $ticket;
+
+    return $this;
+  }
+
+  public function removeTicket(Ticket $ticket)
+  {
+    $this->ticket->removeElement($ticket);
+  }
+
+  public function getTickets()
+  {
+    return $this->tickets;
+  }
+	
+	/**
      * @ORM\Column(type="json_array")
      */
     private $roles = ["ROLE_USER"];
@@ -146,6 +165,27 @@ class User implements UserInterface
 		
 		return $this;
     }
+	/**
+	* @ORM\OneToMany(targetEntity="App\Entity\Competence", mappedBy="user", cascade={"persist","remove"})
+	**/
+	private $competences;
+
+	  public function addCompetence(Competence $comp)
+	  {
+		$this->competences[] = $comp;
+
+		return $this;
+	  }
+
+	  public function removeCompetence(Competence $comp)
+	  {
+		$this->competences->removeElement($comp);
+	  }
+
+	  public function getCompetences()
+	  {
+		return $this->competences;
+	  }
 	
 	/**
 	 * @ORM\Column(type="text", length=255)
@@ -161,6 +201,7 @@ class User implements UserInterface
     {
         return $this->plainpassword;
     }
+	
 
 	/**
 	 * Set plainpassword

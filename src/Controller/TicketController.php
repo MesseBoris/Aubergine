@@ -5,13 +5,18 @@ use App\Entity\Ticket;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use DateTime;
+use App\Entity\Competence;
 use App\Entity\Commentaire;
+use App\Entity\Intervention;
 use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route; //add this line to add usage of Route class.
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Form\CommentaireType;
 use App\Form\TicketType;
+use App\Form\InterventionType;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class TicketController extends Controller
 {
@@ -22,8 +27,17 @@ class TicketController extends Controller
     public function ticket()
     {
 		$em = $this->getDoctrine()->getManager();
-        $tickets = $em->getRepository(Ticket::class)->findAll();
-        return $this->render("all.html.twig", ["tickets" => $tickets]);
+		 $user=$this->getUser();
+         $ticketes = $em->getRepository(Ticket::class)->findAll();
+		 $tickets=[];
+		 foreach($ticketes as $ticket)
+		 {
+			 if($ticket->getComp()==$user)
+			 {
+				 $tickets[]=$ticket;
+			 }
+		 }
+        return $this->render("all.html.twig", ["tickets" => $tickets,'user'=>$user]);
     }
 	
 	/**
@@ -59,8 +73,54 @@ class TicketController extends Controller
 			$ticket->setReleaseOn(new DateTime());
 			$ticket->setEtat(true);
 			$ticket->setValidated(false);
+			$ticket->setNbRedir(0);
 			$ticket->setUser($user);
 			$em->persist($ticket);
+			
+			//Système recherche user capable de traiter
+			$useres= $em->getRepository(User::class)->findAll();
+			$users_enables=[];
+			foreach ($useres as $usere)
+			{
+				foreach($usere->getRoles() as $role)
+				{
+					if($role != 'ROLE_ADMIN')
+					{
+						foreach($usere->getCompetences() as $comp)
+							if($comp== $ticket->getQualification())
+								$users_enables[]=$usere;
+					}
+				}
+			}
+			//affiliation ticket
+			if($users_enables == null)
+			{
+				$ticket->setComp($em->getRepository(User::class)->find(1));
+			}
+			else
+			{
+				$temp=new User();
+				$tempj=0;
+				foreach($users_enables as $usere)
+				{
+					$i=0;
+					if(null !== $usere->getTickets())
+					foreach($usere->getTickets() as $tick)
+					{
+						$i++;
+					}
+					if($i>$tempj)
+					{
+						$temp=$usere;
+						$tempj=$i;
+					}
+				}
+				//enregistrement
+				$temp->addTicket($ticket);
+				$em->persist($temp);
+				$ticket->setComp($temp);
+				$em->persist($ticket);
+			}
 			$em->flush();
 			return $this->redirectToRoute("app_ticket_all");
 		}
@@ -80,7 +140,19 @@ class TicketController extends Controller
      */
 	 public function mesTickets()
 	 {
-		 return $this->render("mesTickets.html.twig");
+		 $em = $this->getDoctrine()->getManager();
+		 $user=$this->getUser();
+         $ticketes = $em->getRepository(Ticket::class)->findAll();
+		 $tickets=[];
+		 foreach($ticketes as $ticket)
+		 {
+			 if($ticket->getUser()==$user)
+			 {
+				 $tickets[]=$ticket;
+			 }
+		 }
+		 
+		 return $this->render("mesTickets.html.twig", ["tickets" => $tickets, "user"=>$user]);
 	 }
 	 
 	 /**
@@ -136,5 +208,52 @@ class TicketController extends Controller
 		 return $this->render("commenter.html.twig", array('form' => $form->createView(),'comms'=>$comms));
 	 }
 	 
+	 public function traiter($ticket,Request $request)
+	 {
+		$comm = new Intervention();
+		$em = $this->getDoctrine()->getManager();
+		
+		$repository = $this->getDoctrine()->getRepository(Ticket::class);
+		$ticket=$repository->find($ticket);
+		
+		$repository = $this->getDoctrine()->getRepository(Intervention::class);
+		$comms=$repository->findBy(['ticket'=>$ticket]);
+		
+		$form = $this->createForm(InterventionType::class, $comm);
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) 
+		{
+			$comm->setTicket($ticket);
+			$em->persist($comm);
+			$em->flush();
+			return $this->redirectToRoute('app_ticket_fin',array('ticket'=>$ticket->getId()));
+		}
+		 return $this->render("commenter.html.twig", array('form' => $form->createView(),'comms'=>$comms));
+	 }
+	 
+	 public function fin($ticket)
+	 {
+		$em = $this->getDoctrine()->getManager();
+        $tickets = $em->getRepository(Ticket::class)->find($ticket);
+		return $this->render("fin.html.twig",array('ticket'=>$tickets));
+	 }
+	 
+	 
+	 public function valider($ticket)
+	 {
+		$em = $this->getDoctrine()->getManager();
+        $tickets = $em->getRepository(Ticket::class)->findAll();
+		foreach($tickets as $ticke)
+		{
+			if($ticke->getId()==$ticket)
+			{
+				$ticke->setEtat(false);
+				$ticke->setValidated(true);
+				$em->persist($ticke);
+				$em->flush();
+			}
+		}
+        return $this->redirectToRoute('app_ticket_all');
+	 }
 
 }

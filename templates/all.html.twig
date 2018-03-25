@@ -2,7 +2,6 @@
 	{% extends "base.html.twig" %}
 
 	{% block body %}
-	<div class="TicketsTables">
 	<h2>Tickets ouverts</h2>
 	<table class="table">
 		<tr>
@@ -17,10 +16,10 @@
             <tr>
                 <td>{{ ticket.poste }}</td>
 				<td>{{ ticket.description }}</td>
-				<td>{{ ticket.qualification }}</td>
+				<td>{{ ticket.qualification.libelle }}</td>
 				<td>
 					<a href="{{ url("app_ticket_commenter", {"ticket":ticket.id}) }}">Commenter</a>
-					<a href="">Traiter</a>
+					<a href="{{ url("app_ticket_traiter", {"ticket":ticket.id}) }}">Traiter</a>
 					<a href="">Rediriger</a>
 					<a href="{{ url("app_ticket_clore", {"ticket":ticket.id}) }}">Clore</a>
 				</td>
@@ -39,9 +38,7 @@
             </tr>
         {% endfor %}
 	</table>
-	</div>
-
-	<div class="TicketsTables">
+	
 	<h2>Tickets clos</h2>
 	<table class="table">
 		<tr>
@@ -70,5 +67,4 @@
 			
         {% endfor %}
 	</table>
-	</div>
     {% endblock %}
