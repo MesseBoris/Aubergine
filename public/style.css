@@ -47,10 +47,9 @@ a{
 }
 
 .LiensAccueil{
-	color: black;
+	color: white;
 	text-align: center;
-	color: black;
-	background-color: #bdc3c7;
+	background-color: #1e272e;
 	padding : 5px;
 	margin: 10px;
 	text-decoration: none;	
@@ -58,4 +57,22 @@ a{
 
 form{
 	margin-left: 50px;
+}
+
+.paragraph{
+	margin-left: 50px;
+}
+
+.TicketsTables{
+	margin-left: 50px;
+}
+
+table {
+	border-collapse: collapse;
+	border: solid;
+}
+
+th, tr, td{
+	border: solid;
+	padding: 5px;
 }

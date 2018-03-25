@@ -2,6 +2,7 @@
 	{% extends "base.html.twig" %}
 
 	{% block body %}
+	<div class="TicketsTables">
 	<h2>Tickets ouverts</h2>
 	<table class="table">
 		<tr>
@@ -38,7 +39,9 @@
             </tr>
         {% endfor %}
 	</table>
-	
+	</div>
+
+	<div class="TicketsTables">
 	<h2>Tickets clos</h2>
 	<table class="table">
 		<tr>
@@ -67,4 +70,5 @@
 			
         {% endfor %}
 	</table>
+	</div>
     {% endblock %}

@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
+{% extends "base.html.twig" %}
+
+	{% block body %}
 	<h1>ACCUEIL</h1>
-	<div class="Links">
-		<a class="LiensAccueil" href="{{ url("app_ticket_add") }}">Déposer ticket</a>
-		<a class="LiensAccueil" href="{{url("app_ticket_mesTickets") }}">Consulter mes tickets</a>
-		<a class="LiensAccueil" href="{{ url("app_ticket_all") }}">Visualiser tickets</a>
-		<a class="LiensAccueil" href="{{url("app_ticket_stats") }}">Rapport stats</a>
-	</div>
-</body>
-</html>
+	<p class="paragraph">
+		Bienvenue sur l'outil de repport d'incidents. Vous pouvez y déposer des tickets d'incidents qui seront traités dans les plus brefs délais possibles.
+	</p>
+{% endblock %}
