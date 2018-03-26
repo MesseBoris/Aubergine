@@ -61,5 +61,10 @@ class ConnexionController extends Controller
 		));
 
 	}
+	
+	public function redir()
+	{
+		return $this->redirectToRoute("app_ticket_co");
+	}
 
 }

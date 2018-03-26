@@ -157,7 +157,7 @@ class TicketController extends Controller
 				$em->persist($ticket);
 			}
 			$em->flush();
-			return $this->redirectToRoute("app_ticket_all");
+			return $this->redirectToRoute("app_ticket_mesTickets");
 		}
 		return $this->render("add.html.twig", ["form" => $form->createView()]);
 	}

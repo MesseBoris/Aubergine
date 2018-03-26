@@ -7,7 +7,6 @@ use App\Entity\Competence;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
@@ -54,8 +53,14 @@ class AppFixtures extends Fixture
 		$comp->setLibelle('Réseau');
 		$manager->persist($comp);
 		
-		
-		
+		$user = new User();	
+		$user->setUsername('test');
+		$user->setPassword('test');
+		$user->setPlainpassword('test');
+		$user->setEmail('test@test.com');
+		$user->addRole('ROLE_ADMIN');
+		$user->addRole('ROLE_SUPER_ADMIN');
+		$manager->persist($user);
 
         $manager->flush();
     }
