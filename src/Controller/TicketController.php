@@ -127,6 +127,7 @@ class TicketController extends Controller
 					}
 				}
 			}
+			var_dump($users_enables);
 			//affiliation ticket
 			if($users_enables == null)
 			{
