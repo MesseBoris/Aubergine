@@ -31,7 +31,15 @@ security:
     # Note: Only the *first* access control that matches will be used ROLE_USER
     access_control:
         - { path: ^/ticket/add, roles: ROLE_USER }
-        - { path: ^/all, roles: ROLE_ADMIN }
+        - { path: ^/ticket/all, roles: ROLE_ADMIN }
+        - { path: ^/ticket/me, roles: ROLE_ADMIN }
+        - { path: ^/ticket/stats, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/ticket/commenter/^, roles: ROLE_ADMIN }
+        - { path: ^/ticket/traiter/^, roles: ROLE_ADMIN }
+        - { path: ^/ticket/redir/^, roles: ROLE_ADMIN }
+        - { path: ^/ticket/redir2/^, roles: ROLE_ADMIN }
+        - { path: ^/ticket/fin/^, roles: ROLE_ADMIN }
+        - { path: ^/ticket/valider/^, roles: ROLE_ADMIN }
         - { path: ^/acceuil, roles: ROLE_USER }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles:  IS_AUTHENTICATED_ANONYMOUSLY}
