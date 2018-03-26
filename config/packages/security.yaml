@@ -34,7 +34,7 @@ security:
     access_control:
         - { path: ^/ticket/add, roles: ROLE_USER }
         - { path: ^/ticket/all, roles: ROLE_ADMIN }
-        - { path: ^/ticket/me, roles: ROLE_ADMIN }
+        - { path: ^/ticket/me, roles: ROLE_USER }
         - { path: ^/ticket/stats, roles: ROLE_SUPER_ADMIN }
         - { path: ^/ticket/commenter/^, roles: ROLE_ADMIN }
         - { path: ^/ticket/traiter/^, roles: ROLE_ADMIN }

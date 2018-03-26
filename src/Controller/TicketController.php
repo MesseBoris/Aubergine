@@ -44,6 +44,7 @@ class TicketController extends Controller
 	public function redir($ticket)
 	{
 		$em = $this->getDoctrine()->getManager();
+		$ticket = $em->getRepository(Ticket::class)->find($ticket);
 		$useres = $em->getRepository(User::class)->findAll();
 		$users=[];
 		foreach($useres as $user)
@@ -56,6 +57,9 @@ class TicketController extends Controller
 	
 	public function redir2($ticket, $user)
     {
+		if($ticket==null)
+			$ticket=1;
+		
 		$em = $this->getDoctrine()->getManager();
         $ticket = $em->getRepository(Ticket::class)->find($ticket);
 		
@@ -122,12 +126,16 @@ class TicketController extends Controller
 					if($role == 'ROLE_ADMIN')
 					{
 						foreach($usere->getCompetences() as $comp)
-							if($comp== $ticket->getQualification())
+						{
+							if($comp->getLibelle() == $ticket->getQualification()->getLibelle)
+							{
 								$users_enables[]=$usere;
+							}
+						}
+							
 					}
 				}
 			}
-			var_dump($users_enables);
 			//affiliation ticket
 			if($users_enables == null)
 			{
@@ -140,7 +148,7 @@ class TicketController extends Controller
 				foreach($users_enables as $usere)
 				{
 					$i=0;
-					if(null !== $usere->getTickets())
+					if($usere->getTickets())
 					foreach($usere->getTickets() as $tick)
 					{
 						$i++;
